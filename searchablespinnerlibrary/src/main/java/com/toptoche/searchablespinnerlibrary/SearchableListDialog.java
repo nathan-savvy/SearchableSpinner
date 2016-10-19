@@ -134,7 +134,9 @@ public class SearchableListDialog extends DialogFragment implements
                 if (_dividerColor != 0) {
                     int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
                     View divider = dialog.findViewById(dividerId);
-                    divider.setBackgroundColor(_dividerColor);
+                    if (divider != null) {
+                        divider.setBackgroundColor(_dividerColor);
+                    }
                 }
             }
         });
