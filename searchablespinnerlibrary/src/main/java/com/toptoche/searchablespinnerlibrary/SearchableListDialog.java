@@ -81,7 +81,6 @@ public class SearchableListDialog extends DialogFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -90,6 +89,14 @@ public class SearchableListDialog extends DialogFragment implements
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams
                 .SOFT_INPUT_STATE_HIDDEN);
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        if (getDialog().isShowing()) {
+            getDialog().hide();
+        }
+        super.onStart();
     }
 
     @Override
