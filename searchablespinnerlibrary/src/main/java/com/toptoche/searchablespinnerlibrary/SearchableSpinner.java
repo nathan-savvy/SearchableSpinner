@@ -6,6 +6,7 @@ import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -151,6 +152,10 @@ public class SearchableSpinner extends Spinner implements View.OnTouchListener,
 
     public void setOnSearchTextChangedListener(SearchableListDialog.OnSearchTextChanged onSearchTextChanged) {
         _searchableListDialog.setOnSearchTextChangedListener(onSearchTextChanged);
+    }
+
+    public void setSearchViewBackground(Drawable drawable) {
+        _searchableListDialog.setSearchViewBackground(drawable);
     }
 
     private Activity scanForActivity(Context cont) {

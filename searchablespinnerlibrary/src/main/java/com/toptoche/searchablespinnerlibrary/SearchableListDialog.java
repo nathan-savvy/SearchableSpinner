@@ -7,6 +7,8 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
@@ -47,6 +49,8 @@ public class SearchableListDialog extends DialogFragment implements
     private float _positiveTextSize;
 
     private Typeface _positiveTypeFace;
+
+    private Drawable _searchViewDrawable;
 
     private DialogInterface.OnClickListener _onClickListener;
 
@@ -164,6 +168,14 @@ public class SearchableListDialog extends DialogFragment implements
         _positiveTypeFace = typeface;
     }
 
+    public void setSearchViewBackground(Drawable drawable) {
+        _searchViewDrawable = drawable;
+
+        if (_searchViewDrawable != null && _searchView != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            _searchView.setBackground(_searchViewDrawable);
+        }
+    }
+
     public void setOnSearchableItemClickListener(SearchableItem searchableItem) {
         this._searchableItem = searchableItem;
     }
@@ -176,13 +188,16 @@ public class SearchableListDialog extends DialogFragment implements
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context
                 .SEARCH_SERVICE);
 
-        _searchView = (android.support.v7.widget.SearchView) rootView.findViewById(R.id.search);
+        _searchView = (SearchView) rootView.findViewById(R.id.search);
         _searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName
                 ()));
         _searchView.setIconifiedByDefault(false);
         _searchView.setOnQueryTextListener(this);
         _searchView.setOnCloseListener(this);
         _searchView.clearFocus();
+        if (_searchViewDrawable != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            _searchView.setBackground(_searchViewDrawable);
+        }
         InputMethodManager mgr = (InputMethodManager) getActivity().getSystemService(Context
                 .INPUT_METHOD_SERVICE);
         mgr.hideSoftInputFromWindow(_searchView.getWindowToken(), 0);
