@@ -38,6 +38,8 @@ public class SearchableListDialog extends DialogFragment implements
 
     private String _strTitle;
 
+    private View _customTitle;
+
     private String _strPositiveButtonText;
 
     private DialogInterface.OnClickListener _onClickListener;
@@ -96,8 +98,12 @@ public class SearchableListDialog extends DialogFragment implements
         String strPositiveButton = _strPositiveButtonText == null ? "CLOSE" : _strPositiveButtonText;
         alertDialog.setPositiveButton(strPositiveButton, _onClickListener);
 
-        String strTitle = _strTitle == null ? "Select Item" : _strTitle;
-        alertDialog.setTitle(strTitle);
+        if (_customTitle == null) {
+            String strTitle = _strTitle == null ? "Select Item" : _strTitle;
+            alertDialog.setTitle(strTitle);
+        } else {
+            alertDialog.setCustomTitle(_customTitle);
+        }
 
         final AlertDialog dialog = alertDialog.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams
@@ -117,6 +123,10 @@ public class SearchableListDialog extends DialogFragment implements
 
     public void setTitle(String strTitle) {
         _strTitle = strTitle;
+    }
+
+    public void setCustomTitle(View customTitle) {
+
     }
 
     public void setPositiveButton(String strPositiveButtonText) {
