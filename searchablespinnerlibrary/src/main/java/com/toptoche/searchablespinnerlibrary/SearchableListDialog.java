@@ -126,7 +126,7 @@ public class SearchableListDialog extends DialogFragment implements
     }
 
     public void setCustomTitle(View customTitle) {
-
+        _customTitle = customTitle;
     }
 
     public void setPositiveButton(String strPositiveButtonText) {
