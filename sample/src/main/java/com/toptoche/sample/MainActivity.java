@@ -12,5 +12,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SearchableSpinner spinner = (SearchableSpinner)findViewById(R.id.spinner);
+        spinner.setPositiveButtonTextSize(18);
     }
 }

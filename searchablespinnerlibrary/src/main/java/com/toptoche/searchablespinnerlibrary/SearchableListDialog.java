@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
@@ -16,6 +17,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.io.Serializable;
@@ -41,6 +43,10 @@ public class SearchableListDialog extends DialogFragment implements
     private View _customTitle;
 
     private String _strPositiveButtonText;
+
+    private float _positiveTextSize;
+
+    private Typeface _positiveTypeFace;
 
     private DialogInterface.OnClickListener _onClickListener;
 
@@ -97,7 +103,6 @@ public class SearchableListDialog extends DialogFragment implements
 
         String strPositiveButton = _strPositiveButtonText == null ? "CLOSE" : _strPositiveButtonText;
         alertDialog.setPositiveButton(strPositiveButton, _onClickListener);
-
         if (_customTitle == null) {
             String strTitle = _strTitle == null ? "Select Item" : _strTitle;
             alertDialog.setTitle(strTitle);
@@ -108,6 +113,19 @@ public class SearchableListDialog extends DialogFragment implements
         final AlertDialog dialog = alertDialog.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams
                 .SOFT_INPUT_STATE_HIDDEN);
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button btnPositive = dialog.getButton(Dialog.BUTTON_POSITIVE);
+                if (_positiveTextSize > 0) {
+                    btnPositive.setTextSize(_positiveTextSize);
+                }
+
+                if (_positiveTypeFace != null) {
+                    btnPositive.setTypeface(_positiveTypeFace);
+                }
+            }
+        });
         return dialog;
     }
 
@@ -136,6 +154,14 @@ public class SearchableListDialog extends DialogFragment implements
     public void setPositiveButton(String strPositiveButtonText, DialogInterface.OnClickListener onClickListener) {
         _strPositiveButtonText = strPositiveButtonText;
         _onClickListener = onClickListener;
+    }
+
+    public void setPositiveButtonTextSize(float textSize) {
+        _positiveTextSize = textSize;
+    }
+
+    public void setPositiveButtonTypeface(Typeface typeface) {
+        _positiveTypeFace = typeface;
     }
 
     public void setOnSearchableItemClickListener(SearchableItem searchableItem) {

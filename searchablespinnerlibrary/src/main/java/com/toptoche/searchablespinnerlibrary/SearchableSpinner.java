@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -138,6 +139,14 @@ public class SearchableSpinner extends Spinner implements View.OnTouchListener,
 
     public void setPositiveButton(String strPositiveButtonText, DialogInterface.OnClickListener onClickListener) {
         _searchableListDialog.setPositiveButton(strPositiveButtonText, onClickListener);
+    }
+
+    public void setPositiveButtonTextSize(float textSize) {
+        _searchableListDialog.setPositiveButtonTextSize(textSize);
+    }
+
+    public void setPositiveButtonTypeface(Typeface typeface) {
+        _searchableListDialog.setPositiveButtonTypeface(typeface);
     }
 
     public void setOnSearchTextChangedListener(SearchableListDialog.OnSearchTextChanged onSearchTextChanged) {
