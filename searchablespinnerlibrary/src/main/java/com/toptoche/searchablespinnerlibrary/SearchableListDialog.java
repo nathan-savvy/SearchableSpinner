@@ -56,6 +56,8 @@ public class SearchableListDialog extends DialogFragment implements
 
     private int _dividerColor;
 
+    private int _positiveButtonTextColor;
+
     private Typeface _listTypeFace;
 
     private DialogInterface.OnClickListener _onClickListener;
@@ -135,6 +137,10 @@ public class SearchableListDialog extends DialogFragment implements
                     btnPositive.setTypeface(_positiveTypeFace);
                 }
 
+                if (_positiveButtonTextColor != 0) {
+                    btnPositive.setTextColor(_positiveButtonTextColor);
+                }
+
                 if (_dividerColor != 0) {
                     int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
                     View divider = dialog.findViewById(dividerId);
@@ -181,6 +187,10 @@ public class SearchableListDialog extends DialogFragment implements
 
     public void setPositiveButtonTypeface(Typeface typeface) {
         _positiveTypeFace = typeface;
+    }
+
+    public void setPositiveButtonTextColor(int color) {
+        _positiveButtonTextColor = color;
     }
 
     public void setSearchViewBackground(Drawable drawable) {

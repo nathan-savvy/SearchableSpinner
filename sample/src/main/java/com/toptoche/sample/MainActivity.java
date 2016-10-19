@@ -19,5 +19,6 @@ public class MainActivity extends AppCompatActivity {
         spinner.setSearchViewBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.search_background));
         spinner.setDialogDividerColor(Color.BLACK);
         spinner.setListTypeface(Typeface.MONOSPACE);
+        spinner.setPositiveButtonTextColor(Color.DKGRAY);
     }
 }

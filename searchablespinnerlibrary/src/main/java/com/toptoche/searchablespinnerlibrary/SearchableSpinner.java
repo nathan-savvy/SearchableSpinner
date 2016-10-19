@@ -154,6 +154,10 @@ public class SearchableSpinner extends Spinner implements View.OnTouchListener,
         _searchableListDialog.setOnSearchTextChangedListener(onSearchTextChanged);
     }
 
+    public void setPositiveButtonTextColor(int color) {
+        _searchableListDialog.setPositiveButtonTextColor(color);
+    }
+
     public void setSearchViewBackground(Drawable drawable) {
         _searchableListDialog.setSearchViewBackground(drawable);
     }
