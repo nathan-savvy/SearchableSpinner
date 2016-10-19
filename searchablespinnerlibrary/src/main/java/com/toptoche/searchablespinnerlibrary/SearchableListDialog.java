@@ -95,8 +95,9 @@ public class SearchableListDialog extends DialogFragment implements
     public void onStart() {
         if (getDialog().isShowing()) {
             getDialog().hide();
+        } else {
+            super.onStart();
         }
-        super.onStart();
     }
 
     @Override
@@ -114,7 +115,7 @@ public class SearchableListDialog extends DialogFragment implements
         }
         // Change End
 
-        View rootView = inflater.inflate(R.layout.searchable_list_dialog, null);
+        View rootView = inflater.inflate(R.layout.searchable_list_dialog, null, false);
         setData(rootView);
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
