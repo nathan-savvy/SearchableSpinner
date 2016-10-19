@@ -52,6 +52,8 @@ public class SearchableListDialog extends DialogFragment implements
 
     private Drawable _searchViewDrawable;
 
+    private int _dividerColor;
+
     private DialogInterface.OnClickListener _onClickListener;
 
     public SearchableListDialog() {
@@ -128,8 +130,15 @@ public class SearchableListDialog extends DialogFragment implements
                 if (_positiveTypeFace != null) {
                     btnPositive.setTypeface(_positiveTypeFace);
                 }
+
+                if (_dividerColor != 0) {
+                    int dividerId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+                    View divider = dialog.findViewById(dividerId);
+                    divider.setBackgroundColor(_dividerColor);
+                }
             }
         });
+
         return dialog;
     }
 
@@ -182,6 +191,10 @@ public class SearchableListDialog extends DialogFragment implements
 
     public void setOnSearchTextChangedListener(OnSearchTextChanged onSearchTextChanged) {
         this._onSearchTextChanged = onSearchTextChanged;
+    }
+
+    public void setDialogDividerColor(int color) {
+        _dividerColor = color;
     }
 
     private void setData(View rootView) {

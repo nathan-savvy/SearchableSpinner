@@ -158,6 +158,10 @@ public class SearchableSpinner extends Spinner implements View.OnTouchListener,
         _searchableListDialog.setSearchViewBackground(drawable);
     }
 
+    public void setDialogDividerColor(int color) {
+        _searchableListDialog.setDialogDividerColor(color);
+    }
+
     private Activity scanForActivity(Context cont) {
         if (cont == null)
             return null;
