@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.List;
@@ -30,7 +32,7 @@ public class SearchableListDialog extends DialogFragment implements
 
     private static final String ITEMS = "items";
 
-    private ArrayAdapter listAdapter;
+    private FontArrayAdapter listAdapter;
 
     private ListView _listViewItems;
 
@@ -53,6 +55,8 @@ public class SearchableListDialog extends DialogFragment implements
     private Drawable _searchViewDrawable;
 
     private int _dividerColor;
+
+    private Typeface _listTypeFace;
 
     private DialogInterface.OnClickListener _onClickListener;
 
@@ -223,8 +227,11 @@ public class SearchableListDialog extends DialogFragment implements
         _listViewItems = (ListView) rootView.findViewById(R.id.listItems);
 
         //create the adapter by passing your ArrayList data
-        listAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,
+        listAdapter = new FontArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,
                 items);
+        if (_listTypeFace != null) {
+            listAdapter.setAdapterTypeFace(_listTypeFace);
+        }
         //attach the adapter to the list
         _listViewItems.setAdapter(listAdapter);
 
@@ -237,6 +244,57 @@ public class SearchableListDialog extends DialogFragment implements
                 getDialog().dismiss();
             }
         });
+    }
+
+    public void setlistTypeFace(Typeface listTypeFace) {
+        this._listTypeFace = listTypeFace;
+    }
+
+    private class FontArrayAdapter extends ArrayAdapter<String> {
+
+        private Typeface _adapterTypeFace;
+
+        public FontArrayAdapter(Context context, int resource) {
+            super(context, resource);
+        }
+
+        public FontArrayAdapter(Context context, int resource, int textViewResourceId) {
+            super(context, resource, textViewResourceId);
+        }
+
+        public FontArrayAdapter(Context context, int resource, String[] objects) {
+            super(context, resource, objects);
+        }
+
+        public FontArrayAdapter(Context context, int resource, int textViewResourceId, String[] objects) {
+            super(context, resource, textViewResourceId, objects);
+        }
+
+        public FontArrayAdapter(Context context, int resource, List<String> objects) {
+            super(context, resource, objects);
+        }
+
+        public FontArrayAdapter(Context context, int resource, int textViewResourceId, List<String> objects) {
+            super(context, resource, textViewResourceId, objects);
+        }
+
+        public void setAdapterTypeFace(Typeface adapterTypeFace) {
+            this._adapterTypeFace = adapterTypeFace;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = super.getView(position, convertView, parent);
+            }
+            TextView textView = (TextView)convertView;
+            if (_adapterTypeFace != null) {
+                textView.setTypeface(_adapterTypeFace);
+            }
+            textView.setText(getItem(position));
+            return textView;
+        }
     }
 
     @Override

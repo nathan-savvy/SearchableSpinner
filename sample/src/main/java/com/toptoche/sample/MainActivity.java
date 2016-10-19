@@ -1,6 +1,7 @@
 package com.toptoche.sample;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,5 +18,6 @@ public class MainActivity extends AppCompatActivity {
         spinner.setPositiveButtonTextSize(18);
         spinner.setSearchViewBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.search_background));
         spinner.setDialogDividerColor(Color.BLACK);
+        spinner.setListTypeface(Typeface.MONOSPACE);
     }
 }
