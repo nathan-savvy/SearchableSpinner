@@ -176,10 +176,6 @@ public class SearchableListDialog extends DialogFragment implements
         _strTitle = strTitle;
     }
 
-    public void setCustomTitle(View customTitle) {
-        _customTitle = customTitle;
-    }
-
     public void setPositiveButton(String strPositiveButtonText) {
         _strPositiveButtonText = strPositiveButtonText;
     }
@@ -199,6 +195,10 @@ public class SearchableListDialog extends DialogFragment implements
 
     public void setPositiveButtonTextColor(int color) {
         _positiveButtonTextColor = color;
+    }
+
+    public SearchView getSearchView() {
+        return _searchView;
     }
 
     public void setSearchViewBackground(Drawable drawable) {
@@ -264,7 +264,7 @@ public class SearchableListDialog extends DialogFragment implements
         });
     }
 
-    public void setlistTypeFace(Typeface listTypeFace) {
+    public void setListTypeFace(Typeface listTypeFace) {
         this._listTypeFace = listTypeFace;
     }
 
