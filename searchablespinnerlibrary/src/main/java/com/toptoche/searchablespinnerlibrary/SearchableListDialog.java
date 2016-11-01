@@ -247,6 +247,8 @@ public class SearchableListDialog extends DialogFragment implements
         //create the adapter by passing your ArrayList data
         listAdapter = new FontArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,
                 items);
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,
+                items);
         if (_listTypeFace != null) {
             listAdapter.setAdapterTypeFace(_listTypeFace);
         }
@@ -268,7 +270,7 @@ public class SearchableListDialog extends DialogFragment implements
         this._listTypeFace = listTypeFace;
     }
 
-    private class FontArrayAdapter extends ArrayAdapter<String> {
+    private class FontArrayAdapter extends ArrayAdapter<Object> {
 
         private Typeface _adapterTypeFace;
 
@@ -288,11 +290,11 @@ public class SearchableListDialog extends DialogFragment implements
             super(context, resource, textViewResourceId, objects);
         }
 
-        public FontArrayAdapter(Context context, int resource, List<String> objects) {
+        public FontArrayAdapter(Context context, int resource, List<Object> objects) {
             super(context, resource, objects);
         }
 
-        public FontArrayAdapter(Context context, int resource, int textViewResourceId, List<String> objects) {
+        public FontArrayAdapter(Context context, int resource, int textViewResourceId, List<Object> objects) {
             super(context, resource, textViewResourceId, objects);
         }
 
@@ -310,7 +312,7 @@ public class SearchableListDialog extends DialogFragment implements
             if (_adapterTypeFace != null) {
                 textView.setTypeface(_adapterTypeFace);
             }
-            textView.setText(getItem(position));
+            textView.setText(getItem(position).toString());
             return textView;
         }
     }
